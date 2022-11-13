@@ -64,3 +64,22 @@ class TestEngine:
         engine.input_equals()
         assert engine.display == "24"
         assert engine.state == States.START
+
+    @pytest.mark.parametrize("state, accumulator, display, pending_operator", [
+        (States.START, 0.0, "0", Operators.NOOP),
+        (States.ACCUMULATE, 12.0, "24", Operators.ADD),
+        (States.COMPUTE, 12.0, "24", Operators.ADD),
+    ])
+    def test_clear_all(self, state, accumulator, display, pending_operator):
+        engine = Engine()
+        engine.set_state(state)
+        engine.accumulator = accumulator
+        engine.display = display
+        engine.pending_operator = pending_operator
+
+        engine.clear_all()
+
+        assert engine.state == States.START
+        assert engine.accumulator == 0.0
+        assert engine.display == "0"
+        assert engine.pending_operator == Operators.NOOP

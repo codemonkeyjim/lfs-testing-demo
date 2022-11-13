@@ -27,6 +27,7 @@ class Engine(Machine):
         self.add_transition('input_digit', States.COMPUTE, States.ACCUMULATE, before=self._reaccumulate, conditions=self._is_digit)
         self.add_transition('input_operation', States.ACCUMULATE, States.COMPUTE, before=self._input_operation)
         self.add_transition('input_equals', [States.START, States.ACCUMULATE], States.START, before=self._do_equals)
+        self.add_transition('clear_all', "*", States.START, before=self._clear)
         self._clear()
 
     def _clear(self):
