@@ -22,13 +22,17 @@ class Operators(enum.Enum):
 
 class Engine(Machine):
     def __init__(self):
-        Machine.__init__(self, states=States, initial=States.START)
+        Machine.__init__(self, states=States, initial=States.START, on_exception='_handle_error')
         self.add_transition('input_digit', [States.START, States.ACCUMULATE], States.ACCUMULATE, before=self._input_digit, conditions=self._is_digit)
         self.add_transition('input_digit', States.COMPUTE, States.ACCUMULATE, before=self._reaccumulate, conditions=self._is_digit)
         self.add_transition('input_operation', States.ACCUMULATE, States.COMPUTE, before=self._input_operation)
+        self.add_transition('input_operation', States.COMPUTE, States.ERROR)
         self.add_transition('input_equals', [States.START, States.ACCUMULATE], States.START, before=self._do_equals)
         self.add_transition('clear_all', "*", States.START, before=self._clear)
         self._clear()
+
+    def _handle_error(self):
+        self.set_state(States.ERROR)
 
     def _clear(self):
         self.pending_operator = Operators.NOOP

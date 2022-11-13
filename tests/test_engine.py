@@ -69,6 +69,7 @@ class TestEngine:
         (States.START, 0.0, "0", Operators.NOOP),
         (States.ACCUMULATE, 12.0, "24", Operators.ADD),
         (States.COMPUTE, 12.0, "24", Operators.ADD),
+        (States.ERROR, 12.0, "24", Operators.ADD),
     ])
     def test_clear_all(self, state, accumulator, display, pending_operator):
         engine = Engine()
@@ -83,3 +84,20 @@ class TestEngine:
         assert engine.accumulator == 0.0
         assert engine.display == "0"
         assert engine.pending_operator == Operators.NOOP
+
+    def test_compute_operator_error(self):
+        engine = Engine()
+        engine.set_state(States.COMPUTE)
+        engine.input_operation(Operators.ADD)
+        assert engine.state == States.ERROR
+
+    def test_divide_by_zero(self):
+        engine = Engine()
+        engine.set_state(States.ACCUMULATE)
+        engine.accumulator = 123.0
+        engine.display = "0"
+        engine.pending_operator = Operators.DIVIDE
+        
+        engine.input_equals()
+
+        assert engine.state == States.ERROR
