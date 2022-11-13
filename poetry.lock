@@ -228,6 +228,18 @@ pytest = ">=4.6"
 testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtualenv"]
 
 [[package]]
+name = "pytest-flakes"
+version = "4.0.5"
+description = "pytest plugin to check source code with pyflakes"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+pyflakes = "*"
+pytest = ">=5"
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -253,7 +265,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "dca6d9535ee8b7dbb9bb7a8dd4f03c908c418c7cebaa4cf461d67e0cc281e328"
+content-hash = "192c4645f67afd7d9983396cfbb0386c7e6e0420df128cbb6462efe0d02cbaa5"
 
 [metadata.files]
 attrs = [
@@ -402,6 +414,10 @@ pytest = [
 pytest-cov = [
     {file = "pytest-cov-4.0.0.tar.gz", hash = "sha256:996b79efde6433cdbd0088872dbc5fb3ed7fe1578b68cdbba634f14bb8dd0470"},
     {file = "pytest_cov-4.0.0-py3-none-any.whl", hash = "sha256:2feb1b751d66a8bd934e5edfa2e961d11309dc37b73b0eabe73b5945fee20f6b"},
+]
+pytest-flakes = [
+    {file = "pytest-flakes-4.0.5.tar.gz", hash = "sha256:953134e97215ae31f6879fbd7368c18d43f709dc2fab5b7777db2bb2bac3a924"},
+    {file = "pytest_flakes-4.0.5-py2.py3-none-any.whl", hash = "sha256:d0e8602d882744fc6169247b62a51203c5a3d8f160892ff3b82f5b9c1e4bb675"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
