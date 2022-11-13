@@ -26,6 +26,7 @@ class Engine(Machine):
         self.add_transition('input_digit', [States.START, States.ACCUMULATE], States.ACCUMULATE, before=self._input_digit, conditions=self._is_digit)
         self.add_transition('input_digit', States.COMPUTE, States.ACCUMULATE, before=self._reaccumulate, conditions=self._is_digit)
         self.add_transition('input_operation', States.ACCUMULATE, States.COMPUTE, before=self._input_operation)
+        self.add_transition('input_equals', [States.START, States.ACCUMULATE], States.START, before=self._do_equals)
         self._clear()
 
     def _clear(self):
@@ -64,3 +65,8 @@ class Engine(Machine):
         self._do_pending_operation()
         self.pending_operator = operation
         self.accumulator = float(self.display)
+
+    def _do_equals(self):
+        self._do_pending_operation()
+        self.pending_operator = Operators.NOOP
+        self.accumulator = 0.0
