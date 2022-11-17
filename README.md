@@ -51,3 +51,4 @@ digraph G {
 
 - [International Software Testing Qualifications Board principles of testing](https://astqb.org/assets/documents/CTFL-2018-Syllabus.pdf)
 - [Andrew Knight (Automation Panda) software testing convictions](https://automationpanda.com/2022/08/23/making-great-waves-8-software-testing-convictions/)
+- [BDD with Cucumber](https://cucumber.io/)

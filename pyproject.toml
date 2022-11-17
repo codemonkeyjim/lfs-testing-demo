@@ -19,6 +19,7 @@ isort = "^5.10.1"
 pytest = "^7.2.0"
 pytest-cov = "^4.0.0"
 pytest-flakes = "^4.0.5"
+behave = "^1.2.6"
 
 [tool.pytest.ini_options]
 addopts = [
