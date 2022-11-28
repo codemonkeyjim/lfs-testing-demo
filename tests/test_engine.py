@@ -107,3 +107,14 @@ class TestEngine:
         engine.input_equals()
 
         assert engine.state == States.ERROR
+
+    def test_input_after_equals(self):
+        engine = Engine()
+        self.input_digits(engine, "12")
+        engine.input_operation(Operators.ADD)
+        self.input_digits(engine, "23")
+        engine.input_equals()
+        assert engine.display == "35"
+
+        self.input_digits(engine, "99")
+        assert engine.display == "99"

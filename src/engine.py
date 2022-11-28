@@ -27,9 +27,16 @@ class Engine(Machine):
         )
         self.add_transition(
             "input_digit",
-            [States.START, States.ACCUMULATE],
+            States.ACCUMULATE,
             States.ACCUMULATE,
             before=self._input_digit,
+            conditions=self._is_digit,
+        )
+        self.add_transition(
+            "input_digit",
+            States.START,
+            States.ACCUMULATE,
+            before=self._clear_and_input_digit,
             conditions=self._is_digit,
         )
         self.add_transition(
@@ -71,6 +78,10 @@ class Engine(Machine):
             self.display = digit
         else:
             self.display += digit
+
+    def _clear_and_input_digit(self, digit: str):
+        self._clear()
+        self._input_digit(digit)
 
     def _reaccumulate(self, digit: str):
         self.display = digit
