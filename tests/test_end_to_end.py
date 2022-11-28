@@ -3,11 +3,12 @@ import pytest
 from calculator import CalculatorApp
 
 OPERATOR_IDS = {
-    '+': 'add',
-    '-': 'subtract',
-    '*': 'multiply',
-    '/': 'divide',
+    "+": "add",
+    "-": "subtract",
+    "*": "multiply",
+    "/": "divide",
 }
+
 
 @pytest.mark.parametrize(
     "l_operand, operator, r_operand, result",
@@ -18,7 +19,9 @@ OPERATOR_IDS = {
         ("72", "/", "8", "9"),
     ],
 )
-async def test_calculations_with_buttons(helpers, l_operand, operator, r_operand, result):
+async def test_calculations_with_buttons(
+    helpers, l_operand, operator, r_operand, result
+):
     async with CalculatorApp().run_test() as calculator:
         for digit in l_operand:
             helpers.click_button(calculator, f"#number-{digit}")
