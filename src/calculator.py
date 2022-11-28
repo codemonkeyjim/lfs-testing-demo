@@ -19,9 +19,11 @@ class CalculatorApp(App):
         "divide": Operators.DIVIDE,
     }
 
-    engine = Engine()
-
     digits = var("0")
+
+    def __init__(self, engine=Engine()):
+        super().__init__()
+        self.engine = engine
 
     def watch_digits(self, value: str) -> None:
         self.query_one("#digits", Static).update(value)
@@ -64,9 +66,10 @@ class CalculatorApp(App):
                 self.engine.input_equals()
         self.digits = self.engine.display
 
+
 def main():
     CalculatorApp().run()
 
+
 if __name__ == "__main__":
     main()
-
