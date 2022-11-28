@@ -13,7 +13,7 @@ Screen {
     min-width: 26;
 }
 
-#display {
+#digits {
     column-span: 4;
     text-style: reverse;
 }

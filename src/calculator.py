@@ -1,5 +1,6 @@
 from textual.app import App, ComposeResult
 from textual.containers import Container
+from textual.reactive import var
 from textual.widgets import Button, Static
 
 from src.engine import Engine, Operators
@@ -20,9 +21,14 @@ class CalculatorApp(App):
 
     engine = Engine()
 
+    digits = var("0")
+
+    def watch_digits(self, value: str) -> None:
+        self.query_one("#digits", Static).update(value)
+
     def compose(self) -> ComposeResult:
         yield Container(
-            Static(id="display"),
+            Static(id="digits"),
             Button("÷", id="operation-divide", variant="warning"),
             Button("7", id="number-7"),
             Button("8", id="number-8"),
@@ -56,7 +62,7 @@ class CalculatorApp(App):
                 self.engine.clear_all()
             case ["action", "equals"]:
                 self.engine.input_equals()
-        self.query_one("#display", Static).update(self.engine.display)
+        self.digits = self.engine.display
 
 def main():
     CalculatorApp().run()

@@ -21,6 +21,7 @@ isort = "^5.10.1"
 pytest = "^7.2.0"
 pytest-cov = "^4.0.0"
 pytest-flakes = "^4.0.5"
+pytest-asyncio = "^0.20.2"
 
 [tool.poetry.scripts]
 calculator = "src.calculator:main"
@@ -36,6 +37,7 @@ addopts = [
   "html:htmlcov",
   "--flakes",
 ]
+asyncio_mode = "auto"
 pythonpath = "src"
 
 [build-system]
